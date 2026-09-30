@@ -21,7 +21,7 @@
 ## 兼容性
 
 - Node.js `>=20.18.1`
-- DSH `0.1.7-rc.2 desktop`（当前实测目标）
+- DSH `0.2.0-rc.1 desktop`（当前实测）
 - 开发环境固定使用 pnpm `11.7.0`
 - Windows 用户环境变量持久化只支持 Windows；其他代理范围仍可在 DSH 支持的平台使用
 
