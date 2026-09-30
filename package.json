@@ -1,0 +1,67 @@
+{
+  "name": "dsh-network-proxy-settings",
+  "version": "0.1.0-dsh-0.1.7-rc.2",
+  "description": "DSH 网络代理设置插件：可同时配置 HTTP、HTTPS、通用/SOCKS 代理，支持独立认证、NO_PROXY 与连通性测试。",
+  "type": "module",
+  "packageManager": "pnpm@11.7.0",
+  "license": "MIT",
+  "author": "JacobCodeShow",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "proxy",
+    "socks5"
+  ],
+  "main": "./src/host.mjs",
+  "exports": {
+    ".": "./src/host.mjs",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src/host.mjs",
+    "src/shared.mjs",
+    "lib/client.js",
+    "cordis.patch.yml",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node scripts/build-client.mjs",
+    "test": "node --test",
+    "test:coverage": "node --test --experimental-test-coverage",
+    "check:syntax": "node --check src/host.mjs && node --check src/shared.mjs && node --check lib/client.js",
+    "check": "node scripts/build-client.mjs && pnpm run check:syntax && pnpm test",
+    "prepack": "node scripts/build-client.mjs"
+  },
+  "engines": {
+    "node": ">=20.18.1"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.2"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "undici": "^7.16.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.12"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-locale"
+      ]
+    }
+  }
+}
